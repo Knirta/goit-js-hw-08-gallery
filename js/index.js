@@ -43,8 +43,8 @@ function onGalleryItemClick(e) {
 
 function onCloseBtnClick(e) {
   window.removeEventListener("keydown", onEcsKeyClick);
-  window.addEventListener("keydown", onLeftArrowKeyClick);
-  window.addEventListener("keydown", onRightArrowKeyClick);
+  window.removeEventListener("keydown", onLeftArrowKeyClick);
+  window.removeEventListener("keydown", onRightArrowKeyClick);
 
   refs.originalImage.src = "";
   refs.originalImage.alt = "";
