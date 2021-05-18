@@ -69,11 +69,7 @@ function onLeftArrowKeyClick(e) {
   const LEFT_ARROW_KEY_CODE = "ArrowLeft";
   const isArrowLeft = e.code === LEFT_ARROW_KEY_CODE;
   if (isArrowLeft) {
-    const currentIndex = findCurrentIndexOfImg();
-    const nextIndex = findNextIndexToTheLeft(currentIndex);
-    const { original, description } = galleryItems[nextIndex];
-    refs.originalImage.src = original;
-    refs.originalImage.alt = description;
+    showNextPicture(findNextIndexToTheLeft);
   }
 }
 
@@ -81,12 +77,16 @@ function onRightArrowKeyClick(e) {
   const RIGHT_ARROW_KEY_CODE = "ArrowRight";
   const isArrowRight = e.code === RIGHT_ARROW_KEY_CODE;
   if (isArrowRight) {
-    const currentIndex = findCurrentIndexOfImg();
-    const nextIndex = findNextIndexToTheRight(currentIndex);
-    const { original, description } = galleryItems[nextIndex];
-    refs.originalImage.src = original;
-    refs.originalImage.alt = description;
+    showNextPicture(findNextIndexToTheRight);
   }
+}
+
+function showNextPicture(findNextIndex) {
+  const currentIndex = findCurrentIndexOfImg();
+  const nextIndex = findNextIndex(currentIndex);
+  const { original, description } = galleryItems[nextIndex];
+  refs.originalImage.src = original;
+  refs.originalImage.alt = description;
 }
 
 function findCurrentIndexOfImg() {
